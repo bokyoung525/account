@@ -210,7 +210,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("이미 해지된 계좌 - 계좌 해지 실패")
-    void deleteAccountFailed_alreadyUnregistered() {   // 계좌 잔액 있음
+    void deleteAccountFailed_alreadyUnregistered() {
         //given
         AccountUser pobi = AccountUser.builder()
                 .id(12L)
