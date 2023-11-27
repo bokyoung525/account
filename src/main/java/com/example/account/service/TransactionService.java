@@ -97,6 +97,8 @@ public class TransactionService {
 
         validateCancelBalance(transaction, account, amount);
 
+        account.cancelBalance(amount);
+
         return TransactionDto.fromEntity(
                 saveAndGetTransaction(CANCEL, TransactionResultType.S, account, amount));
     }
@@ -119,5 +121,10 @@ public class TransactionService {
                 .orElseThrow(() -> new AccountException(ErrorCode.ACCOUNT_NOT_FOUND));
 
         saveAndGetTransaction(CANCEL, TransactionResultType.F, account, amount);
+    }
+
+    public TransactionDto queryTransaction(String transactionId) {
+        return TransactionDto.fromEntity(transactionRepository.findByTransactionId(transactionId)
+                .orElseThrow(() -> new AccountException(ErrorCode.TRANSACTION_NOT_FOUND)));
     }
 }
